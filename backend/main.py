@@ -1,4 +1,11 @@
-﻿from fastapi import FastAPI
+import os, tempfile
+d_temp = r"D:\Legal_Metrology_Compliance_System\backend\temp"
+os.makedirs(d_temp, exist_ok=True)
+os.environ["TEMP"] = d_temp
+os.environ["TMP"] = d_temp
+tempfile.tempdir = d_temp
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import scanner, master_data, reports, analytics, tasks, audit
 import models
@@ -10,7 +17,7 @@ app = FastAPI(title="Legal Metrology Compliance API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
