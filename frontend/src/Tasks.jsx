@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ClipboardList, Plus, MapPin, User, Calendar, AlertCircle, CheckCircle, Clock } from 'lucide-react';
 
@@ -9,7 +9,7 @@ function Tasks() {
   const [newTask, setNewTask] = useState({ title: '', assigned_to: '', location: '', priority: 'medium', due_date: '' });
 
   const fetchTasks = () => {
-    fetch('http://localhost:8000/api/tasks/')
+    fetch('/api/tasks/')
       .then(res => res.json())
       .then(data => { setTasks(data); setLoading(false); })
       .catch(() => {
@@ -39,7 +39,7 @@ function Tasks() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:8000/api/tasks/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newTask) })
+    fetch('/api/tasks/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newTask) })
       .then(res => res.json())
       .then(() => { fetchTasks(); setShowForm(false); setNewTask({ title: '', assigned_to: '', location: '', priority: 'medium', due_date: '' }); })
       .catch(() => { setShowForm(false); });

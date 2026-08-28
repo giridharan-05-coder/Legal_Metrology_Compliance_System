@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, AlertTriangle, BarChart2, Activity } from 'lucide-react';
 
@@ -7,7 +7,7 @@ function Analytics() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/analytics/risk-heatmap')
+    fetch('/api/analytics/risk-heatmap')
       .then(res => res.json())
       .then(data => { setHeatmap(data); setLoading(false); })
       .catch(() => {

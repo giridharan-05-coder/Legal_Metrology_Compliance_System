@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Scan, LayoutDashboard, FileText, Database, 
@@ -16,11 +16,11 @@ function App() {
   const [recentReports, setRecentReports] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/analytics/dashboard-stats')
+    fetch('/api/analytics/dashboard-stats')
       .then(r => r.json()).then(setStats)
       .catch(() => setStats({ total_scans: 1250, violations_detected: 340, compliance_rate: '72.8', active_inspectors: 18, pending_tasks: 7 }));
 
-    fetch('http://localhost:8000/api/reports/')
+    fetch('/api/reports/')
       .then(r => r.json())
       .then(data => setRecentReports(data.slice(0, 4)))
       .catch(() => setRecentReports([

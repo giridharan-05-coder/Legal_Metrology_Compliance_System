@@ -61,7 +61,7 @@ function Scanner() {
     formData.append('image', fileObj);
 
     try {
-      const res = await fetch('http://localhost:8000/api/scans/analyze', {
+      const res = await fetch('/api/scans/analyze', {
         method: 'POST',
         body: formData,
       });
@@ -86,7 +86,7 @@ function Scanner() {
         violation_details: results.compliance_result?.violations?.join('; ') || null,
         inspector_id: 'admin_1'
       };
-      const res = await fetch('http://localhost:8000/api/reports/', {
+      const res = await fetch('/api/reports/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)

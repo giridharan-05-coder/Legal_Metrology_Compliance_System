@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Search, Download, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 
@@ -8,7 +8,7 @@ function Reports() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/reports/')
+    fetch('/api/reports/')
       .then(res => res.json())
       .then(data => { setReports(data); setLoading(false); })
       .catch(() => {
